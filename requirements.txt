@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+numpy
+scikit-learn
+pandas
+tensorflow
+httpx
+firebase-admin
+google-cloud-secret-manager
+google-cloud-storage
+google-cloud-aiplatform

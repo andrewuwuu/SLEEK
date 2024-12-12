@@ -1,0 +1,17 @@
+# Ignore secrets
+/secrets/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore git-related files
+.git/
+
+#Ignore prompt files
+/health/prompt.txt
