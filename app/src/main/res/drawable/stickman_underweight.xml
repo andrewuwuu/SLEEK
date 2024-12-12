@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="60dp"
+    android:viewportWidth="24"
+    android:viewportHeight="60">
+
+    <!-- Head -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M12,6 A6,6 0 1,1 12,18 A6,6 0 1,1 12,6" />
+
+    <!-- Body - thinner for underweight -->
+    <path
+        android:strokeWidth="1.5"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"
+        android:pathData="M12,14 L12,40" />
+
+    <!-- Arms - curved and thinner -->
+    <path
+        android:strokeWidth="1.5"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"
+        android:pathData="M12,22 C8,23 2,26 0,28" />
+
+    <path
+        android:strokeWidth="1.5"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"
+        android:pathData="M12,22 C16,23 22,26 24,28" />
+
+    <!-- Legs - thinner -->
+    <path
+        android:strokeWidth="1.5"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"
+        android:pathData="M12,40 L6,60 M12,40 L18,60" />
+
+</vector>
