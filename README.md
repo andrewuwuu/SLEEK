@@ -11,15 +11,15 @@ We utilized machine learning models to analyze health performance of human. This
 
 *Model Accuracy & Loss*
 
-`accuracy: 0.9175 - loss: 0.2244 - val_accuracy: 0.9080 - val_loss: 0.2031`
+`accuracy: 0.9892 - loss: 0.0369 - val_accuracy: 0.9918 - val_loss: 0.0253`
 
 **Regression Model**: We build regression model to predict the calorie intake of users which based on various factors and parameters.
 
 *Model Accuracy & Loss*
 
-`loss: 43.3352 - mean_absolute_error: 5.2431 - val_loss: 67.6056 - val_mean_absolute_error: 7.1379`
+`loss: 0.0839 - mean_absolute_error: 0.1148 - val_loss: 0.1454 - val_mean_absolute_error: 0.2323`
 
-**Generative AI Model**: We conduct a fine-tuning in the Generative AI model to create an elaborative yet informative result for meal recommendations.
+**Generative AI Model**: We conduct a prompt engineering in the Generative AI model to create an elaborative yet informative result for meal recommendations.
 
 ## Installation
 To run this project, make sure that you have Python 3.9 or higher installed and the following libraries:
