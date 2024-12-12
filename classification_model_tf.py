@@ -6,12 +6,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
 
-# Generate data with 5,000 samples
 data = {
-    "age": np.random.randint(15, 81, 10000),  # Age range from 15 to 80
-    "gender": np.random.choice([0, 1], 10000),  # Gender: 0 for female, 1 for male
-    "height_cm": np.random.randint(150, 200, 10000),  # Height in cm
-    "weight_kg": np.random.randint(50, 100, 10000),  # Weight in kg
+    "age": np.random.randint(15, 81, 10000), 
+    "gender": np.random.choice([0, 1], 10000),
+    "height_cm": np.random.randint(150, 200, 10000), 
+    "weight_kg": np.random.randint(50, 100, 10000),  
 }
 
 # Calculate BMI
