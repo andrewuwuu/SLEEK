@@ -10,6 +10,26 @@ data = pd.read_csv(data_path)
 
 data = data[['age', 'gender', 'height_cm', 'weight_kg']]
 
+data.dropna(inplace=True)
+
+data['gender'] = data['gender'].map({'Male': 1, 'Female': 0})
+
+height_q1 = data['height_cm'].quantile(0.25)
+height_q3 = data['height_cm'].quantile(0.75)
+height_iqr = height_q3 - height_q1
+height_lower_bound = height_q1 - 1.5 * height_iqr
+height_upper_bound = height_q3 + 1.5 * height_iqr
+
+data = data[(data['height_cm'] >= height_lower_bound) & (data['height_cm'] <= height_upper_bound)]
+
+weight_q1 = data['weight_kg'].quantile(0.25)
+weight_q3 = data['weight_kg'].quantile(0.75)
+weight_iqr = weight_q3 - weight_q1
+weight_lower_bound = weight_q1 - 1.5 * weight_iqr
+weight_upper_bound = weight_q3 + 1.5 * weight_iqr
+
+data = data[(data['weight_kg'] >= weight_lower_bound) & (data['weight_kg'] <= weight_upper_bound)]
+
 def calculate_bmi(row):
     height_m = row['height_cm'] / 100
     return row['weight_kg'] / (height_m ** 2)
