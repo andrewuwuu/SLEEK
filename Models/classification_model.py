@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
 
-data_path = '/mnt/data/bodyPerformance.csv'
+data_path = '/data/bodyPerformance.csv'
 data = pd.read_csv(data_path)
 
 data = data[['age', 'gender', 'height_cm', 'weight_kg']]
