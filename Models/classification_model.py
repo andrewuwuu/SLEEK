@@ -79,4 +79,4 @@ history = model.fit(X_train, y_train,
 test_loss, test_accuracy = model.evaluate(X_test, y_test)
 print(f"Test Accuracy: {test_accuracy * 100:.2f}%")
 
-model.save('./classification_model.h5')
+model.save('classification_model.h5')
