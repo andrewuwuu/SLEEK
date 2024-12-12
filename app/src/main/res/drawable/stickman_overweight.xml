@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="28dp"
+    android:height="60dp"
+    android:viewportWidth="28"
+    android:viewportHeight="60">
+
+    <!-- Head -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M14,6 A6,6 0 1,1 14,18 A6,6 0 1,1 14,6" />
+
+    <!-- Body - wider and lower -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M6,28 A8,12 0 0,0 22,28 A8,12 0 0,0 6,28" />
+
+    <!-- Arms - longer but still close to body -->
+    <path
+        android:strokeWidth="3"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"
+        android:pathData="M8,22 C7,24 4,30 2,34" />
+
+    <path
+        android:strokeWidth="3"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"
+        android:pathData="M20,22 C21,24 24,30 26,34" />
+
+    <!-- Legs - original position -->
+    <path
+        android:strokeWidth="3"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"
+        android:pathData="M10,36 L6,60 M18,36 L22,60" />
+</vector>

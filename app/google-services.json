@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "932656826209",
+    "project_id": "sleek-backend",
+    "storage_bucket": "sleek-backend.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932656826209:android:12d28da387cd3a2963a720",
+        "android_client_info": {
+          "package_name": "com.example.sleek"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVu29kbt-7Kwcv6LY9NokB6CK-A0yMQgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

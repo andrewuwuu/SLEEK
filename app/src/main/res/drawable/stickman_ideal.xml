@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="60dp"
+    android:viewportWidth="24"
+    android:viewportHeight="60">
+
+    <!-- Head -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M12,6 A6,6 0 1,1 12,18 A6,6 0 1,1 12,6" />
+
+    <!-- Body - normal proportions (ellipse shape) -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M12,18 C8,18 8,46 12,46 C16,46 16,18 12,18" />
+
+    <!-- Arms - connected to body -->
+    <path
+        android:strokeWidth="2"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"
+        android:pathData="M8,28 C8,28 2,32 0,34" />
+
+    <path
+        android:strokeWidth="2"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"
+        android:pathData="M16,28 C16,28 22,32 24,34" />
+
+    <!-- Legs - connected to body -->
+    <path
+        android:strokeWidth="2"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"
+        android:pathData="M12,46 L6,60 M12,46 L18,60" />
+</vector>
