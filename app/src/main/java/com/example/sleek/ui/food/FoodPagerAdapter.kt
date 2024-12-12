@@ -7,29 +7,38 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.sleek.data.MealPlanItem
 
 class FoodPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-    private val fragments = listOf(
-        FoodCategoryFragment.newInstance("Sarapan"),
-        FoodCategoryFragment.newInstance("Makan Siang"),
-        FoodCategoryFragment.newInstance("Makan Malam")
-    )
+    private val fragmentMap = mutableMapOf<Int, FoodCategoryFragment>()
+    private var currentData: List<MealPlanItem>? = null
 
-    override fun getItemCount(): Int = fragments.size
+    private val mealTypes = listOf("Sarapan", "Makan Siang", "Makan Malam")
 
-    override fun createFragment(position: Int): Fragment = fragments[position]
+    override fun getItemCount(): Int = mealTypes.size
+
+    override fun createFragment(position: Int): Fragment {
+        val fragment = FoodCategoryFragment.newInstance(mealTypes[position])
+        fragmentMap[position] = fragment
+
+        // If we have data, update the new fragment immediately
+        currentData?.let { data ->
+            val mealType = mealTypes[position]
+            val filteredData = data.filter { it.meal == mealType }
+            Log.d("FoodPagerAdapter", "Creating fragment for $mealType with ${filteredData.size} items")
+            fragment.updateData(filteredData)
+        }
+
+        return fragment
+    }
 
     fun updateData(foods: List<MealPlanItem>) {
-        val groupedFoods = foods.groupBy { it.meal ?: "Tidak Diketahui" }
+        currentData = foods
+        Log.d("FoodPagerAdapter", "Updating with ${foods.size} items")
 
-        fragments.forEachIndexed { index, fragment ->
-            val mealFoods = when (index) {
-                0 -> groupedFoods["Sarapan"]
-                1 -> groupedFoods["Makan Siang"]
-                2 -> groupedFoods["Makan Malam"]
-                else -> null
-            }
-
-            Log.d("FoodPagerAdapter", "Updating fragment $index with data: $mealFoods")
-            mealFoods?.let { fragment.updateData(it) } ?: fragment.updateData(emptyList())
+        // Update existing fragments
+        fragmentMap.forEach { (position, fragment) ->
+            val mealType = mealTypes[position]
+            val filteredData = foods.filter { it.meal == mealType }
+            Log.d("FoodPagerAdapter", "Updating $mealType with ${filteredData.size} items")
+            fragment.updateData(filteredData)
         }
     }
 }

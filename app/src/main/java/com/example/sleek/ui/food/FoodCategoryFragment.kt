@@ -7,19 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sleek.R
 import com.example.sleek.data.FoodRepository
 import com.example.sleek.data.MealPlanItem
 import com.example.sleek.data.local.AppDatabase
-import com.example.sleek.data.local.MealPlanDao
 import com.example.sleek.utils.Resource
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class FoodCategoryFragment : Fragment() {
     private var _recyclerView: RecyclerView? = null
@@ -27,16 +22,17 @@ class FoodCategoryFragment : Fragment() {
     private lateinit var adapter: FoodAdapter
     private var mealType: String? = null
     private lateinit var viewModel: FoodViewModel
+    private var pendingData: List<MealPlanItem>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mealType = arguments?.getString(ARG_MEAL_TYPE)
+        adapter = FoodAdapter() // Initialize adapter early
 
-        // Initialize ViewModel with meal type
+        // Initialize ViewModel
         val repository = FoodRepository.getInstance(requireContext())
         val database = AppDatabase.getDatabase(requireContext())
         val mealPlanDao = database.mealPlanDao()
-
         val viewModelFactory = FoodViewModelFactory(repository, mealPlanDao, mealType)
         viewModel = ViewModelProvider(this, viewModelFactory)[FoodViewModel::class.java]
     }
@@ -50,11 +46,17 @@ class FoodCategoryFragment : Fragment() {
         _recyclerView = view.findViewById(R.id.recyclerView)
         setupRecyclerView()
         observeData()
+
+        // Apply any pending data updates
+        pendingData?.let {
+            updateData(it)
+            pendingData = null
+        }
+
         return view
     }
 
     private fun setupRecyclerView() {
-        adapter = FoodAdapter()
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
     }
@@ -75,7 +77,7 @@ class FoodCategoryFragment : Fragment() {
                                     ingredients = entity.ingredients?.split(",") ?: listOf()
                                 )
                             }
-                            adapter.updateData(mealItems)
+                            updateData(mealItems)
                         }
                     }
                 }
@@ -87,24 +89,27 @@ class FoodCategoryFragment : Fragment() {
         }
     }
 
+    fun updateData(foods: List<MealPlanItem>) {
+        if (!isAdded) {
+            pendingData = foods
+            return
+        }
+
+        Log.d("FoodCategoryFragment", "Updating ${mealType} with ${foods.size} items")
+        adapter.updateData(foods)
+    }
+
     private fun showError(message: String) {
         view?.let {
             Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
         }
     }
 
-    fun updateData(foods: List<MealPlanItem>) {
-        if (!::adapter.isInitialized) {
-            Log.e("FoodCategoryFragment", "Adapter not initialized")
-            return
-        }
-        adapter.updateData(foods)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _recyclerView = null
     }
+
     companion object {
         private const val ARG_MEAL_TYPE = "meal_type"
 
@@ -116,5 +121,4 @@ class FoodCategoryFragment : Fragment() {
             }
         }
     }
-
 }
