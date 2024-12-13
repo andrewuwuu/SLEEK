@@ -5,25 +5,25 @@ SLEEK or Smart Lifestyle Eating for Efficient Kalories is a mobile-based applica
 We building the backend service using Python as programming language and FastAPI as framework. You can find the documentation for FastAPI in [here.](https://fastapi.tiangolo.com/)
 
 For GCP Features that we utilize is listed as:
-- Artifact Registry
+#### - Artifact Registry
 This is where we push inage container that has been build from entire codebase.
 
-- Cloud Run
+#### - Cloud Run
 This is where we hosted entire backend code that has been wrapped as docker image.
 
-- Google Cloud Storage
+#### - Google Cloud Storage
 This is where we store prediction model from Machine Learning team.
 
-- Firebase
+#### - Firebase
 We utilize firebase to handle user logging and firestore database.
 
-- Firestore
+#### - Firestore
 Firestore is database system that we use to store user's health data, prediction result from model, and generated meal plan from vertex.
 
-- Vertex AI
+#### - Vertex AI
 We use pretrained model (Gemini 1.5 Pro) to generate meal plan with custom prompt from Machine Learning Team.
 
-- Google Secret Manager
+#### - Google Secret Manager
 Secret Manager here is to save and retrieve safely firebase apiKey so that the key is not leaked via container image building.
 
 ## How to Deploy
